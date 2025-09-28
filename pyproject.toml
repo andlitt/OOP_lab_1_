@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel>=0.37.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lab_1"
+version = "0.1.0"
+description = "OOP Lab 1"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [  # Основные зависимости для работы приложения
+    # Добавь здесь свои пакеты, например:
+    # "requests",
+]
+
+[project.optional-dependencies]
+dev = [  # Зависимости для разработки и проверки кода
+    "pytest>=7.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+    "taskipy>=1.0.0",
+    "setuptools>=75.6.0",
+    "flake8>=7.1.1",
+    "isort>=5.13.2"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.taskipy.tasks]
+test = "pytest"
+lint = "ruff check ."
+format = "ruff format ."
+type-check = "mypy src/"
+all-checks = "task test && task lint && task type-check"
+fix = "ruff check --fix . && ruff format ."
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+indent-width = 4
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q -p no:warnings"
+testpaths = ["tests"]
+pythonpath = ["src"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+
+[dependency-groups]
+dev = [
+    "flake8>=7.3.0",
+    "isort>=6.0.1",
+    "mypy>=1.18.2",
+    "pre-commit>=4.3.0",
+    "pytest>=8.4.2",
+    "ruff>=0.13.2",
+    "setuptools>=80.9.0",
+    "taskipy>=1.14.1",
+]

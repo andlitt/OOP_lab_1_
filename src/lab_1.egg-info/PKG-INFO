@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: lab_1
+Version: 0.1.0
+Summary: OOP Lab 1
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Requires-Dist: taskipy>=1.0.0; extra == "dev"
+Requires-Dist: setuptools>=75.6.0; extra == "dev"
+Requires-Dist: flake8>=7.1.1; extra == "dev"
+Requires-Dist: isort>=5.13.2; extra == "dev"
