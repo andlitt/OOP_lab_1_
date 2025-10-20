@@ -3,7 +3,7 @@
 
 import pytest
 
-from tasks.task_2 import Triangle
+from tasks.class_Triangle import Triangle
 
 
 # Создание через конструктор с валидными данными
@@ -21,7 +21,7 @@ def test_constructor_valid():
 def test_invalid_sides():
     with pytest.raises(
         ValueError,
-        match="Треугольник существует, если сумма"
+        match="Треугольник существует, когда сумма"
         " длин любых двух его сторон больше длины третьей стороны",
     ):
         Triangle(3, 3, 6, 60, 60, 60)
@@ -82,8 +82,8 @@ def test_triangle_type():
     triangle2 = Triangle(5, 5, 5, 60, 60, 60)
     assert triangle2.triangle_type(5, 5, 5, 60, 60, 60) == "Равносторонний"
 
-    triangle3 = Triangle(5, 5, 6, 60, 60, 60)
-    assert triangle3.triangle_type(5, 5, 6, 60, 60, 60) == "Равнобедренный"
+    triangle3 = Triangle(5, 5, 6, 50, 80, 50)
+    assert triangle3.triangle_type(5, 5, 6, 50, 80, 50) == "Равнобедренный"
 
     triangle4 = Triangle(1, 1, 2**0.5, 90, 45, 45)
     assert (

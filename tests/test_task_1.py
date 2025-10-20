@@ -3,7 +3,7 @@
 
 import pytest
 
-from tasks.task_1 import Money, make_Money
+from tasks.class_Money import Money, make_Money
 
 
 # Создание через конструктор с
@@ -30,7 +30,7 @@ def test_invalid_nominal():
 
 # Попытка создания с отрицательным количеством
 def test_invalid_quantity():
-    with pytest.raises(ValueError, match="Количество -7 должно быть > 1"):
+    with pytest.raises(ValueError, match="Количество -7 должно быть не менее 1"):
         Money(100, -7)
 
 
