@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import math
+
+
 class Triangle:
 
     def __init__(self, a, b, c, alpha, beta, gamma):
@@ -23,9 +29,9 @@ class Triangle:
 
     def read(self):
         try:
-            a = float(input("Введите длину стороны a "))
-            b = float(input("Введите длину стороны b "))
-            c = float(input("Введите длину стороны c "))
+            a = float(input("Введите длину стороны a = "))
+            b = float(input("Введите длину стороны b = "))
+            c = float(input("Введите длину стороны c = "))
 
             if not self.is_triangle_existence(a, b, c):
                 print(
@@ -38,18 +44,13 @@ class Triangle:
             self.b = b
             self.c = c
 
-            alpha = float(input("Введите угол alpha  "))
-            beta = float(input("Введите угол beta   "))
-            gamma = float(input("Введите угол gamma  "))
-
-            if not (alpha + beta + gamma == 180):
-                print("Сумма углов треугольника должна быть 180 градусов")
-                return False
-
-            self.alpha = alpha
-            self.beta = beta
-            self.gamma = gamma
-            return True
+            self.alpha, self.beta, self.gamma = self.calculate_angles(a, b, c)
+            print(
+                f"Углы треугольника:\n"
+                f"alpha = {self.alpha}\n"
+                f"beta = {self.beta}\n"
+                f"gamma = {self.gamma}\n"
+            )
 
         except ValueError:
             print("Ошибка: Введите числовые значения")
@@ -69,6 +70,14 @@ class Triangle:
             self.a, self.b, self.c, self.alpha, self.beta, self.gamma
         )
         print(f"Вид треугольника: {triangle_type}")
+
+    def calculate_angles(self, a, b, c):
+        alpha_rad = math.acos((b**2 + c**2 - a**2) / (2 * b * c))
+        beta_rad = math.acos((a**2 + c**2 - b**2) / (2 * a * c))
+        alpha = math.ceil(math.degrees(alpha_rad))
+        beta = math.ceil(math.degrees(beta_rad))
+        gamma = 180 - (alpha + beta)
+        return alpha, beta, gamma
 
     def perimeter(self):
         return self.a + self.b + self.c

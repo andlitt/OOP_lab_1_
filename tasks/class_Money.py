@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 class Money:
     VALID_NOMINALS = [1, 2, 5, 10, 50, 100, 500, 1000, 5000]
 
@@ -50,7 +54,7 @@ class Money:
         return self.first * self.second
 
 
-def make_Money(first, second):
+def make_money(first, second):
     try:
         # Создаем временный объект для проверки
         temp = Money(first, second)

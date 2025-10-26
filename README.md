@@ -23,9 +23,6 @@ python tasks/task_1.py
 # Запуск задания 2
 python tasks/task_2.py
 
-# Запуск тестов для задания 1
-pytest tests/test_task_1.py
-
-# Запуск тестов для задания 2
-pytest tests/test_task_2.py
+# Запуск тестов
+python -m pytest
 ```

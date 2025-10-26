@@ -1,4 +1,7 @@
-from class_Triangle import Triangle
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from triangle_package import Triangle
 
 if __name__ == "__main__":
 

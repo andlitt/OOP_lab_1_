@@ -3,10 +3,61 @@
 
 import pytest
 
-from tasks.class_Triangle import Triangle
+from tasks.class_money import Money, make_money
+from tasks.triangle_package.class_triangle import Triangle
+
+# Money test
 
 
-# Создание через конструктор с валидными данными
+def test_constructor():
+    money = Money(100, 5)
+    assert money.first == 100
+    assert money.second == 5
+    assert money.summa() == 500
+
+
+# Создание через make_money
+def test_make_money():
+    money = make_money(500, 3)
+    assert money.first == 500
+    assert money.second == 3
+    assert money.summa() == 1500
+
+
+# Попытка создания с неверным номиналом
+def test_invalid_nominal():
+    with pytest.raises(ValueError, match="Номинал 3 не поддерживается"):
+        Money(3, 7)
+
+
+# Попытка создания с отрицательным количеством
+def test_invalid_quantity():
+    with pytest.raises(ValueError, match="Количество -7 должно быть не менее 1"):
+        Money(100, -7)
+
+
+# Вычисление суммы
+def test_summa_calculation():
+    money = make_money(1000, 2)
+    assert money.summa() == 2000
+
+
+# Тест метода check_nominal с валидными номиналами
+def test_check_nominal():
+    money = Money(100, 1)
+    for nominal in money.VALID_NOMINALS:
+        assert money.check_nominal(nominal) is True
+
+
+# Тест метода check_nominal с невалидными номиналами
+def test_check_nominal_invalid():
+    money = Money(100, 1)
+    assert money.check_nominal(3) is False
+    assert money.check_nominal(25) is False
+    assert money.check_nominal(200) is False
+
+
+# Triangle test
 def test_constructor_valid():
     triangle = Triangle(3, 4, 5, 90, 53.13, 36.87)
     assert triangle.a == 3
@@ -30,7 +81,7 @@ def test_invalid_sides():
 # Неверно заданы углы
 def test_invalid_angles():
     with pytest.raises(
-        ValueError, match="Сумма углов треугольника " "должна быть равна 180 градусов"
+        ValueError, match="Сумма углов треугольника должна быть равна 180 градусов"
     ):
         Triangle(3, 3, 4, 60, 60, 61)
 
@@ -73,9 +124,8 @@ def test_calculating_height():
     assert abs(height_b - 3.0) < 0.001  # h = 2S/b = 12/4 = 3
 
 
-# Определения типа треугольника
+# Определение типа треугольника
 def test_triangle_type():
-
     triangle1 = Triangle(3, 4, 5, 90, 53.13, 36.87)
     assert triangle1.triangle_type(3, 4, 5, 90, 53.13, 36.87) == "Прямоугольный"
 

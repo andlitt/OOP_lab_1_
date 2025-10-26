@@ -1,4 +1,7 @@
-from class_Money import Money
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from class_money import Money
 
 if __name__ == "__main__":
 
