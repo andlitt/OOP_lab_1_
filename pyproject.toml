@@ -54,8 +54,7 @@ disallow_untyped_defs = true
 [tool.pytest.ini_options]
 minversion = "7.0"
 addopts = "-ra -q -p no:warnings"
-testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = [".", "src", "tasks"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"

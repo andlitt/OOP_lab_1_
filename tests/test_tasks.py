@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import pytest
+from class_money import Money, make_money
 
-from tasks.class_money import Money, make_money
 from tasks.triangle_package.class_triangle import Triangle
 
 # Money test
